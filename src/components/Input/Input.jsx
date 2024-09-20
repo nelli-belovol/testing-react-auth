@@ -4,36 +4,36 @@ import cn from 'clsx';
 import style from './Input.module.css';
 
 const Input = ({
-  type = 'text',
-  name,
-  value,
-  onChange,
-  placeholder,
-  label,
-  containerClassName,
-  inputClassName,
+	type = 'text',
+	name,
+	value,
+	onChange,
+	placeholder,
+	label,
+	containerClassName,
+	inputClassName,
 }) => {
-  const id = useId();
+	const id = useId();
 
-  return (
-    <div className={cn(style.formControl, containerClassName)}>
-      {label && (
-        <label className={style.label} htmlFor={id}>
-          {label}
-        </label>
-      )}
+	return (
+		<div className={cn(style.formControl, containerClassName)}>
+			{label && (
+				<label className={style.label} htmlFor={id} data-testId='input-label'>
+					{label}
+				</label>
+			)}
 
-      <input
-        id={id}
-        className={cn(style.input, inputClassName)}
-        name={name}
-        type={type}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-      />
-    </div>
-  );
+			<input
+				id={id}
+				className={cn(style.input, inputClassName)}
+				name={name}
+				type={type}
+				value={value}
+				onChange={onChange}
+				placeholder={placeholder}
+			/>
+		</div>
+	);
 };
 
 export { Input };
