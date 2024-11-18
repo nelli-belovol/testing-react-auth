@@ -6,7 +6,7 @@ const Form = ({ onSubmit, onSuccess, onError, children, className }) => {
 		e.preventDefault();
 		const formData = new FormData(e.target);
 
-		const data = Object.fromEntries(formData); console.log(data);
+		const data = Object.fromEntries(formData);
 
 		try {
 			await onSubmit(data);
