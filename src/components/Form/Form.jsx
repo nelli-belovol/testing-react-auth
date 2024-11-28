@@ -21,6 +21,7 @@ const Form = ({ onSubmit, onSuccess, onError, children, className }) => {
 			className={cn(style.form, className)}
 			onSubmit={handleSubmit}
 			autoComplete="off"
+			role="form"
 		>
 			{children}
 		</form>
