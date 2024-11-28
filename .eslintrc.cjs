@@ -8,6 +8,12 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
   ],
+  overrides: [
+    {
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:testing-library/react'],
+    },
+  ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.2' } },
@@ -18,6 +24,8 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'react/display-name': 'off',
     'react/prop-types': 'off',
+    'jest/no-focused-tests': 'off',
   },
 };

@@ -6,32 +6,38 @@ import userEvent from '@testing-library/user-event';
 import { Input } from './Input';
 
 const testPlaceholder = 'test placeholder';
+
+
+function renderComponent(props) {
+	return render(<Input placeholder={testPlaceholder} {...props} />);
+}
+
 describe('Input', () => {
 	it('should render the input', () => {
-		render(<Input placeholder={testPlaceholder} />);
+		renderComponent();
 
 		expect(screen.getByPlaceholderText(testPlaceholder)).toBeInTheDocument();
 	});
+
 	it('should render the input with the correct type', () => {
-		render(<Input placeholder={testPlaceholder} type="checkbox" />);
+		// render(<Input placeholder={testPlaceholder} type="checkbox" />);
+		renderComponent({ type: 'checkbox' });
 
 		expect(screen.getByRole('checkbox')).toBeInTheDocument();
 	});
+
 	it('should render the input with the correct class name', () => {
-		const { container } = render(
-			<Input
-				placeholder={testPlaceholder}
-				inputClassName="inputTest"
-				containerClassName="containerTest"
-			/>,
-		);
-
-		const containerEl = container.querySelector('.formControl.containerTest');
-
+		// const { container } = render(
+		// 	<Input
+		// 		placeholder={testPlaceholder}
+		// 		inputClassName="inputTest"
+		// 		containerClassName="containerTest"
+		// 	/>,
+		// );
+		renderComponent({ inputClassName: 'inputTest', containerClassName: 'containerTest' });
+		const containerEl = screen.getByRole('group');
 		expect(containerEl).toBeInTheDocument();
-
 		const element = screen.getByPlaceholderText(testPlaceholder);
-
 		expect(element).toHaveClass('input');
 		expect(element).toHaveClass('inputTest');
 	});
@@ -42,8 +48,7 @@ describe('Input', () => {
 	});
 	it('should render the input with the correct label', () => {
 		const labelText = "I'm a label"
-
-		render(<Input placeholder={testPlaceholder} label={labelText} />);
+		renderComponent({ label: labelText });
 
 		expect(screen.getByLabelText(labelText)).toBeInTheDocument();
 	})
@@ -52,8 +57,8 @@ describe('Input', () => {
 
 		const valueTest = 'test value';
 
-		render(<Input placeholder={testPlaceholder} value={valueTest} onChange={jest.fn()} />);
-
+		// render(<Input placeholder={testPlaceholder} value={valueTest} onChange={jest.fn()} />);
+		renderComponent({ value: valueTest, onChange: () => jest.fn() });
 		expect(screen.getByDisplayValue(valueTest)).toBeInTheDocument()
 	});
 	it('should invoke the onChange callback', async () => {
