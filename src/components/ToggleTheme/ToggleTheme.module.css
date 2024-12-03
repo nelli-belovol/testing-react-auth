@@ -1,0 +1,18 @@
+.toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  &:focus,
+  &:focus-visible,
+  &:hover {
+    outline: none;
+    autoline: transparent;
+    border-color: transparent;
+  }
+}
+
+.dark {
+  background-color: #424242;
+  color: #fff;
+}

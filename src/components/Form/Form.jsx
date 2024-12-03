@@ -1,7 +1,11 @@
 import cn from 'clsx';
 import style from './Form.module.css';
+import { useTheme } from '../../providers/useTheme';
 
 const Form = ({ onSubmit, onSuccess, onError, children, className }) => {
+
+	const { theme } = useTheme();
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const formData = new FormData(e.target);
@@ -17,11 +21,10 @@ const Form = ({ onSubmit, onSuccess, onError, children, className }) => {
 	};
 
 	return (
-		<form
-			className={cn(style.form, className)}
+		<form role="form"
+			className={cn(style.form, theme === 'dark' && style.dark, className)}
 			onSubmit={handleSubmit}
 			autoComplete="off"
-			role="form"
 		>
 			{children}
 		</form>

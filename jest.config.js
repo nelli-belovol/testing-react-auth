@@ -9,6 +9,7 @@ const config = {
   coverageDirectory: 'coverage',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/internal/jest.setup.js'],
+
   transform: {
     '^.+\\.(js|jsx)$': 'babel-jest',
   },
